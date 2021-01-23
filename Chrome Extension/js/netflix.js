@@ -1,7 +1,12 @@
 // this holds the last url that had "https://www.netflix.com/watch/" in its name.
 // this way it doesn't keep updating the page with the same show/movie repeatedly
 let lastNetflixUrl = "";
-let tabID = 0;
+let finalData = {
+    'Title': '',
+    'Actors': [],
+    'Director': '',
+    'Poster': ''
+};
 /*
 function newPopup(url) {
 	popupWindow = window.open(url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=false,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
@@ -11,10 +16,10 @@ function newPopup(url) {
 chrome.notifications.onButtonClicked.addListener(function(notifId, btnIdx) {
         if (btnIdx === 0) {
             console.log("YES");
+            addShow(finalData);
         } else if (btnIdx === 1) {
             console.log("NO");
         }
-    
 });
 
 
@@ -83,26 +88,28 @@ function scanTabs() {
                             director = data.match(regexForDirector)[0];
                             director = director.replace(",\"director\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"awards\":", "");
                         } catch (error) {}
-                        let finalData = {
+
+                        finalData = {
                             'Title': title,
                             'Actors': actorList,
                             'Director': director,
                             'Poster': image
                         };
-                        addShow(finalData);
-                            
-                        console.log("sending");
-                        chrome.notifications.create('', {
-                            title: 'SpoilerFilter',
-                            message: 'Do you want to add \"' + title + '\" to SpoilerFilter?',
-                            iconUrl: '/icon.png',
-                            type: 'basic',
-                            buttons: [{
-                                title: "Yes",
-                            }, {
-                                title: "No",
-                            }]
+
+                        if (isBlackListed(title) == false) {
+                            console.log("sending");
+                            chrome.notifications.create('', {
+                                title: 'SpoilerFilter',
+                                message: 'Do you want to add \"' + title + '\" to SpoilerFilter?',
+                                iconUrl: '/icon.png',
+                                type: 'basic',
+                                buttons: [{
+                                    title: "Yes",
+                                }, {
+                                    title: "No",
+                                }]
                             });
+                        }
                 });
                         
             }
