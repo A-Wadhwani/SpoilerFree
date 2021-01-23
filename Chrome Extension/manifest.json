@@ -21,7 +21,8 @@
   },
   "permissions": [
     "http://www.omdbapi.com/",
-    "webNavigation"
+    "webNavigation",
+    "https://www.netflix.come"
   ],
   "options_page": "src/options_custom/index.html",
   "page_action": {
