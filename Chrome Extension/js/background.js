@@ -23,7 +23,7 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
                 .replace("www.", "");
 
             //remove things after / 
-            let domain = parsedUrl.slice(0, parsedUrl.index('/') == -1 ? parsedUrl.length : parsedUrl.indexOf('/'))
+            let domain = parsedUrl.slice(0, parsedUrl.indexOf('/') == -1 ? parsedUrl.length : parsedUrl.indexOf('/'))
                 .slice(0, parsedUrl.indexOf('?') == -1 ? parsedUrl.length : parsedUrl.indexOf('?'));
 
             try {
@@ -43,7 +43,7 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
 
 function runYoutubeScript() {
     chrome.tabs.executeScript({
-        file: 'youtube.js'
+        file: 'js/youtube.js'
     });
     return true;
 }

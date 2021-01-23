@@ -9,21 +9,31 @@ function removeSpoilers() {
 
         if (youtubeStrings[i].innerHTML.indexOf("Stranger Things") != -1) {
 
-            //looks for the closest div with the class 
+            console.log("Hello World!");
+
+            //looks for the closest div with the class "style-scope ytd-rich-grid-media"
             let toBeBlocked = youtubeStrings[i].closest("style-scope ytd-rich-grid-media");
-            while (true) {
-                if (toBeBlocked.id.localeCompare("dismissable") == 0) {
-                    break;
-                }
+            console.log("This: " + toBeBlocked + " is what we got");
+            if (!(toBeBlocked === null)) {
+                while (true) {
+                    if (toBeBlocked.id.localeCompare("dismissable") == 0) {
+                        break;
+                    }
+                } 
+                toBeBlocked = toBeBlocked.closest("style-scope ytd-rich-grid-media");  
             }
 
             if (toBeBlocked === null) {
                 toBeBlocked = youtubeStrings[i];
-                for (let j = 0;  j < 7; j++) {
+                while(true) {
+                    if (toBeBlocked.id.localeCompare("dismissable") == 0) {
+                        break;
+                    }
                     toBeBlocked = toBeBlocked.parentNode;
                 }
             }
-
+            console.log("reached here")
+            console.log(toBeBlocked);
             toBeBlocked.setAttribute("style", "display: none !important;");
         }
     }
