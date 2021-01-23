@@ -2,6 +2,24 @@
 // this way it doesn't keep updating the page with the same show/movie repeatedly
 let lastNetflixUrl = "";
 
+
+let url = "https://www.netflix.com/watch/80117697";
+
+let xhr = new XMLHttpRequest();
+xhr.open("GET", url);
+
+xhr.onreadystatechange = function () {
+   if (xhr.readyState === 4) {
+      console.log(xhr.status);
+      const regex = /"name":".*?","description":"/;
+      let found = xhr.responseText.match(regex)[0];
+      found = found.replace("\"name\":\"", "").replace("\",\"description\":\"", "");
+      console.log(found);
+   }};
+
+xhr.send();
+
+
 function scanTabs() {
     chrome.windows.getAll({populate: true}, function(windows) {
         chrome.tabs.getSelected(null,function(tab) {
@@ -17,6 +35,7 @@ function scanTabs() {
                 // print debugging stuff
                 chrome.extension.getBackgroundPage().console.log("Watching Netflix");
                 chrome.extension.getBackgroundPage().console.log(showId);
+                getDataFromNetflix(showId);
             }
         });
     });
