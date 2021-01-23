@@ -50,7 +50,7 @@ function removeSpoilers() {
 
             console.log(thumbnail[0]);
             
-            thumbnail[0].setAttribute("src", "https://i.ytimg.com/vi/CV4he9sDXL8/maxresdefault.jpg");
+            thumbnail[0].setAttribute("src", "https://static.wixstatic.com/media/8c5e04_9a676e5cf1d24391b0fd980105ab4d23~mv2.jpg/v1/fill/w_514,h_360,al_c,q_90/8c5e04_9a676e5cf1d24391b0fd980105ab4d23~mv2.jpg");
 
             //toBeBlocked.setAttribute("style", "display: none !important;");
 
@@ -96,8 +96,8 @@ function removeSpoilers() {
 
 removeSpoilers();
 
-//repeats as user scrolls, every 100 ms
+//repeats as user scrolls, every 200 ms
 
 setInterval(function () {
     removeSpoilers();
-}, 100)
+}, 200)

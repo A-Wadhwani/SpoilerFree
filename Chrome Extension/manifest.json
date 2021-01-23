@@ -27,6 +27,9 @@
   },
   "permissions": [
     "tabs",
+    "activeTab",
+    "notifications",
+    "contextMenus",
     "http://www.omdbapi.com/",
     "http://35.232.212.63/",
     "webNavigation",
@@ -35,6 +38,7 @@
     "http://www.youtube.com/"
   ],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "web_accessible_resources": ["popup.html"],
   "options_page": "src/options_custom/index.html",
   "content_scripts": [
     {
@@ -52,6 +56,12 @@
       "js": [
         "js/jquery/jquery.js",
         "src/inject/inject.js"
+      ]
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": [
+        "js/app.js"
       ]
     }
   ]
