@@ -10,8 +10,9 @@
 
     function addToSpoilerList(data){
         if (data["Title"] != null){
-            addShow(data);
-            createInfoBox(data);
+            if(addShow(data) == true){
+                createInfoBox(data);
+            }
         }
     }
 

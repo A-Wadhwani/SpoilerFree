@@ -10,6 +10,49 @@ function loadData(){
     return data;
 }
 
+function checkForSpoilers(youtubeURL, callback){
+    request = "http://35.232.212.63/?getdesc=" + youtubeURL;
+    fetch(request).then(r => r.text()).then(result => {
+        var flag = true;
+        var list = loadSpoilerWords();
+        list.forEach(function (element){
+            if (result.toLowerCase().includes(element.toLowerCase())){
+                flag = element;
+            }
+        })
+        callback(flag);
+    });
+}
+
+function checkForSpoilersInSubtitles(youtubeURL, callback){
+    request = "http://35.232.212.63/?url=" + youtubeURL;
+    fetch(request).then(r => r.text()).then(result => {
+        var flag = true;
+        var list = loadSpoilerWords();
+        list.forEach(function (element){
+            if (result.toLowerCase().includes(element.toLowerCase())){
+                flag = element;
+            }
+        })
+        callback(flag);
+    });
+}
+
+function loadSpoilerWords(){
+    let data = JSON.parse(localStorage.getItem('showsArray'));
+    let badWords = [];
+    data.forEach(element => {
+        badWords.push(...element['Title'].split(" "));
+        let actors = element['Actors'].toString().replace(",", " ");
+        badWords.push(...actors.split(" "));
+        if (element['Director'] != 'N\\A' && element['Director'] != ''){
+            badWords.push(...element['Director'].split(" "));
+        }
+    })
+    var filteredWords = badWords.filter(function (item) {return item != "The" && item != "" && item != null})
+    return filteredWords;
+}
+
 function loadBlacklist(){
     let data = JSON.parse(localStorage.getItem('blacklist'));
     if (data == null){
@@ -41,13 +84,17 @@ function isBlackListed(title){
 
 function addShow(show){
     let data = JSON.parse(localStorage.getItem('showsArray'));
+    let flag = true;
     data.forEach(element => {
         if (element['Title'] == show['Title']){
-            return;
+            flag = false;
         }
     });
-    data.push(show);
-    localStorage.setItem('showsArray', JSON.stringify(data));
+    if (flag == true){
+        data.push(show);
+        localStorage.setItem('showsArray', JSON.stringify(data));
+    }
+    return flag;
 }
 
 function removeShow(title){
