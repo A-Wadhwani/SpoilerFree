@@ -93,8 +93,8 @@ function scanTabs() {
 
                         if (isBlackListed(title) == false) {
                             chrome.notifications.create('', {
-                                title: 'SpoilerFilter',
-                                message: 'Do you want to add \"' + title + '\" to SpoilerFilter?',
+                                title: 'SpoilerFree',
+                                message: 'Do you want to add \"' + title + '\" to SpoilerFree?',
                                 iconUrl: '/icon.png',
                                 type: 'basic',
                                 buttons: [{
