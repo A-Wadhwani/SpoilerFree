@@ -2,6 +2,7 @@
 // this way it doesn't keep updating the page with the same show/movie repeatedly
 let lastNetflixUrl = "";
 
+
 /*
 let url = "https://www.netflix.com/title/80057281";
 
@@ -150,14 +151,13 @@ function scanTabs() {
                             director = data.match(regexForDirector)[0];
                             director = director.replace(",\"director\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"awards\":", "");
                         } catch (error) {}
-                        
-
-                        console.log(title);
-                        console.log(image);
-                        console.log(actors);
-                        console.log(actorList);
-                        console.log(creator);
-                        console.log(director);
+                        let finalData = {
+                            'Title': title,
+                            'Actors': actorList,
+                            'Director': director,
+                            'Poster': image
+                        };
+                        addShow(finalData);
                         });
             }
         });

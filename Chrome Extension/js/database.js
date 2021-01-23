@@ -2,18 +2,18 @@
 loadData();
 
 function loadData(){
-    let data = localStorage.getItem('spoilerFree');
+    let data = JSON.parse(localStorage.getItem('showsArray'));
     if (data == null){ 
         data = [];
-        localStorage.setItem('spoilerFree', []);
+        localStorage.setItem('showsArray', JSON.stringify(data));
     }
     return data;
 }
 
 function addShow(show){
-    let data = localStorage.getItem('spoilerFree');
-    data.data_list.push(show);
-    localStorage.setItem('spoilerFreeShows', data);
-    db.collection("users").add(data);
+    let data = JSON.parse(localStorage.getItem('showsArray'));
+    data.push(show);
+    localStorage.setItem('showsArray', JSON.stringify(data));
 }
+
     

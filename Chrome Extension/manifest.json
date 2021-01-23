@@ -21,6 +21,7 @@
       "js/imdb.js",
       "js/spoilerfilter.js",
       "js/background.js",
+      "js/database.js",
       "js/youtube.js"
     ]
   },
