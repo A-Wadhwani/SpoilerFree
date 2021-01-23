@@ -2,9 +2,71 @@
 // this way it doesn't keep updating the page with the same show/movie repeatedly
 let lastNetflixUrl = "";
 
+/*
+let url = "https://www.netflix.com/title/80057281";
 
-let url = "https://www.netflix.com/watch/80057281";
+const myInit = {
+    method: 'GET',
+    mode: 'no-cors',
+    cache: 'no-cache',
+    credentials: 'omit'
+};
+  
+fetch(url, myInit)
+.then(response => response.text())
+.then(data => {
+    
+        const regexForTitle = /"name":".*?","description":"/;
+        const regexForImage = /","image":".*?","dateCreated":"/;
+        const regexForActors = /,"actors":\[{"@type":".*?}\],"creator":/;
+        const regexForCreator = /,"creator":\[{"@type":"Person","name":".*?"}],"director":/;
+        const regexForDirector = /,"director":\[{"@type":"Person","name":".*?"}],"awards":/;
 
+        let title = "";
+        try {
+            title = data.match(regexForTitle)[0];
+            title = title.replace("\"name\":\"", "").replace("\",\"description\":\"", "");
+        } catch (error) {}
+
+        
+        let image = "";
+        try {
+            image = data.match(regexForImage)[0];
+            image = image.replace("\",\"image\":\"", "").replace("\",\"dateCreated\":\"", "");
+        } catch (error) {}
+
+        let actors = "";
+        let actorList = [];
+        try {
+            actors = data.match(regexForActors)[0];
+            actors = actors.replace(",\"actors\":[", "").replace("\"}],\"creator\":", "")
+                .replaceAll("{\"@type\":\"Person\",\"name\":\"", "").replaceAll("\"}", "").replaceAll("{", "");
+            actorList = actors.split(",");
+        } catch (error) {}
+
+        let creator = "";
+        try {
+            creator = data.match(regexForCreator)[0];
+            creator = creator.replace(",\"creator\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"director\":", "");
+        } catch (error) {}
+
+        let director = "";
+        try {
+            director = data.match(regexForDirector)[0];
+            director = director.replace(",\"director\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"awards\":", "");
+        } catch (error) {}
+        
+
+        console.log(title);
+        console.log(image);
+        console.log(actors);
+        console.log(actorList);
+        console.log(creator);
+        console.log(director);
+    });
+
+*/
+/*
 let xhr = new XMLHttpRequest();
 xhr.open("GET", url);
 
@@ -18,8 +80,7 @@ xhr.onreadystatechange = function () {
    }};
 
 xhr.send();
-
-
+*/
 function scanTabs() {
     chrome.windows.getAll({populate: true}, function(windows) {
         chrome.tabs.getSelected(null,function(tab) {
@@ -33,9 +94,71 @@ function scanTabs() {
                 let showId = found.substring(30, found.length);
                 
                 // print debugging stuff
-                chrome.extension.getBackgroundPage().console.log("Watching Netflix");
-                chrome.extension.getBackgroundPage().console.log(showId);
-                getDataFromNetflix(showId);
+                console.log("Watching Netflix");
+                console.log(showId);
+
+                
+                const myInit = {
+                    method: 'GET',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    credentials: 'omit'
+                };
+
+                console.log(lastNetflixUrl);
+
+                fetch(lastNetflixUrl, myInit)
+                .then(response => response.text())
+                .then(data => {
+                    
+                        const regexForTitle = /"name":".*?","description":"/;
+                        const regexForImage = /","image":".*?","dateCreated":"/;
+                        const regexForActors = /,"actors":\[{"@type":".*?}\],"creator":/;
+                        const regexForCreator = /,"creator":\[{"@type":"Person","name":".*?"}],"director":/;
+                        const regexForDirector = /,"director":\[{"@type":"Person","name":".*?"}],"awards":/;
+
+                        let title = "";
+                        try {
+                            title = data.match(regexForTitle)[0];
+                            title = title.replace("\"name\":\"", "").replace("\",\"description\":\"", "");
+                        } catch (error) {}
+
+                        
+                        let image = "";
+                        try {
+                            image = data.match(regexForImage)[0];
+                            image = image.replace("\",\"image\":\"", "").replace("\",\"dateCreated\":\"", "");
+                        } catch (error) {}
+
+                        let actors = "";
+                        let actorList = [];
+                        try {
+                            actors = data.match(regexForActors)[0];
+                            actors = actors.replace(",\"actors\":[", "").replace("\"}],\"creator\":", "")
+                                .replaceAll("{\"@type\":\"Person\",\"name\":\"", "").replaceAll("\"}", "").replaceAll("{", "");
+                            actorList = actors.split(",");
+                        } catch (error) {}
+
+                        let creator = "";
+                        try {
+                            creator = data.match(regexForCreator)[0];
+                            creator = creator.replace(",\"creator\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"director\":", "");
+                        } catch (error) {}
+
+                        let director = "";
+                        try {
+                            director = data.match(regexForDirector)[0];
+                            director = director.replace(",\"director\":\[{\"@type\":\"Person\",\"name\":\"", "").replace("\"}],\"awards\":", "");
+                        } catch (error) {}
+                        
+
+                        console.log(title);
+                        console.log(image);
+                        console.log(actors);
+                        console.log(actorList);
+                        console.log(creator);
+                        console.log(director);
+                        });
             }
         });
     });
@@ -43,3 +166,7 @@ function scanTabs() {
 
 chrome.tabs.onUpdated.addListener(scanTabs);
 chrome.tabs.onCreated.addListener(scanTabs);
+
+
+
+
