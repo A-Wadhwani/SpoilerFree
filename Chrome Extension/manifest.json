@@ -19,15 +19,18 @@
       "js/jquery/jquery.js",
       "js/netflix.js",
       "js/imdb.js",
-      "js/spoilerfilter.js"
-    ],
-    "persistent": false
+      "js/spoilerfilter.js",
+      "js/background.js",
+      "js/youtube.js"
+    ]
   },
   "permissions": [
     "tabs",
     "http://www.omdbapi.com/",
     "webNavigation",
-    "https://www.netflix.com/"
+    "https://www.netflix.com/",
+    "https://www.youtube.com/",
+    "http://www.youtube.com/"
   ],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "options_page": "src/options_custom/index.html",
