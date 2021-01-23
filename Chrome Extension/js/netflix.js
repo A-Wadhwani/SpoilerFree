@@ -22,5 +22,5 @@ function scanTabs() {
     });
 }
 
-  chrome.tabs.onUpdated.addListener(scanTabs);
-  chrome.tabs.onCreated.addListener(scanTabs);
+chrome.tabs.onUpdated.addListener(scanTabs);
+chrome.tabs.onCreated.addListener(scanTabs);
