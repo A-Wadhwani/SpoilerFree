@@ -1,9 +1,9 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "SpoilerFree",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "BoilerMake VIII Submission",
+  "homepage_url": "http://github.com",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -15,8 +15,13 @@
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js"
-    ]
+    ],
+    "persistent": false
   },
+  "permissions": [
+    "http://www.omdbapi.com/",
+    "webNavigation"
+  ],
   "options_page": "src/options_custom/index.html",
   "page_action": {
     "default_icon": "icons/icon19.png",
