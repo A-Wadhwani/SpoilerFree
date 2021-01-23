@@ -20,9 +20,10 @@
     "persistent": false
   },
   "permissions": [
+    "tabs",
     "http://www.omdbapi.com/",
     "webNavigation",
-    "https://www.netflix.come"
+    "https://www.netflix.com"
   ],
   "options_page": "src/options_custom/index.html",
   "page_action": {
@@ -30,9 +31,6 @@
     "default_title": "page action demo",
     "default_popup": "src/page_action/page_action.html"
   },
-  "permissions": [
-    "tabs"
-  ],
   "content_scripts": [
     {
       "matches": [
