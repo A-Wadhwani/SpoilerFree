@@ -5,6 +5,9 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             
             //check the URL
+            if (!tabs[0]){
+                return;
+            }
 
             let url =  tabs[0].url;
 

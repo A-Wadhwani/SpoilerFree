@@ -1,22 +1,19 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyByOITM0Z8dblOuHYBghbSofXER7_nLxT4",
-    authDomain: "silver-rain-302602.firebaseapp.com",
-    projectId: "silver-rain-302602"
-});
-  
-var db = firebase.firestore();
 
+loadData();
 
-//TODO: Create Cookie with localStorage and use that to figure out if there's an id already
-db.collection("users").add({
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-});
+function loadData(){
+    let data = localStorage.getItem('spoilerFree');
+    if (data == null){ 
+        data = [];
+        localStorage.setItem('spoilerFree', []);
+    }
+    return data;
+}
 
+function addShow(show){
+    let data = localStorage.getItem('spoilerFree');
+    data.data_list.push(show);
+    localStorage.setItem('spoilerFreeShows', data);
+    db.collection("users").add(data);
+}
+    
