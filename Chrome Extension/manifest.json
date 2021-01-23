@@ -10,6 +10,10 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "browser_action": {
+    "default_title": "BoilerKey - In Browser",
+    "default_popup": "dropdown.html"
+  },
   "background": {
     "scripts": [
       "js/jquery/jquery.js",
@@ -17,21 +21,21 @@
       "js/imdb.js",
       "js/spoilerfilter.js",
       "js/background.js",
+      "js/database.js",
       "js/youtube.js"
     ]
   },
   "permissions": [
     "tabs",
     "http://www.omdbapi.com/",
+    "http://35.232.212.63/",
     "webNavigation",
     "https://www.netflix.com/",
     "https://www.youtube.com/",
     "http://www.youtube.com/"
   ],
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "options_page": "src/options_custom/index.html",
-  "browser_action": {
-    "default_title": "SpoilerFree"
-  },
   "content_scripts": [
     {
       "matches": [

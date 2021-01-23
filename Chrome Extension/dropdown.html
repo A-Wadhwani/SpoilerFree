@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>SpoilerFree</title>
+  <meta name="description" content="SpoilerFree: Don't miss the suspense.">
+  <meta name="author" content="BoilerMake VIII">
+
+  <style type="text/css" >
+    body {
+        min-width: 320px;
+        max-width: 175%;
+        position: relative;
+      vertical-align:middle;
+    }
+  </style>
+
+  <link rel="stylesheet" href="css/dropdown.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container overflow-auto" style="max-height: 500px;">
+        <main>
+          <div class="pt-2 text-center">
+            <h2>SpoilerFree</h2>
+          </div>
+      
+          <div class="row g-1">
+            <div class="col-md-5 col-md-4 ">
+      
+              <form id="search-form">
+                <div class="py-2 input-group">
+                  <input id="movie-name" type="text" class="form-control" placeholder="Lookup Movie">
+                  <button id="search-button" type="search" class="btn btn-primary">Search</button>
+                </div>
+              </form>
+            </div>
+            </div>
+          </div>
+        </main>
+    </div>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/imdb.js"></script>
+  <script src="dropdown.js"></script>
+</body>
+</html>

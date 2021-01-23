@@ -11,6 +11,21 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
 
 }, {url: [{urlMatches : 'imdb.com/'}]});
 
+function getDataFromSearch(name, callback){
+    let requestLink = "http://www.omdbapi.com/?apikey=2ac890b2&t=".concat(name);
+    fetch(requestLink).then(r => r.json()).then(result => {
+        let data = {
+            'Title': result['Title'],
+            'Actors': result['Actors'],
+            'Director': result['Director'],
+            'Poster': result['Poster']
+        };
+        callback(data);
+        return data;
+    });
+    return null;
+}
+
 function getDataFromIMDB(OMbd){
     let requestLink = "http://www.omdbapi.com/?apikey=2ac890b2&i=".concat(OMbd);
     fetch(requestLink).then(r => r.text()).then(response => {
