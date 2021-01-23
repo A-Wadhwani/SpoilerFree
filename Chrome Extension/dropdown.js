@@ -1,6 +1,7 @@
     let searchButton = document.getElementById("search-button");
 
     loadInfoBoxes();
+    loadBlacklist();
 
     searchButton.addEventListener("click", (e)=>{
         e.preventDefault();

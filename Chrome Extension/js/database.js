@@ -10,6 +10,35 @@ function loadData(){
     return data;
 }
 
+function loadBlacklist(){
+    let data = JSON.parse(localStorage.getItem('blacklist'));
+    if (data == null){
+        data = [];
+        localStorage.setItem('blacklist', JSON.stringify(data));
+    }
+}
+
+function addToblacklist(title){
+    let data = JSON.parse(localStorage.getItem('blacklist'));
+    data.forEach(element => {
+        if (element == title){
+            return;
+        }
+    });
+    data.push(show);
+    localStorage.setItem('blacklist', JSON.stringify(data));
+}
+
+function isBlackListed(title){
+    let data = JSON.parse(localStorage.getItem('blacklist'));
+    data.forEach(element => {
+        if (element == title){
+            return true;
+        }
+    });
+    return false;
+}
+
 function addShow(show){
     let data = JSON.parse(localStorage.getItem('showsArray'));
     data.forEach(element => {
