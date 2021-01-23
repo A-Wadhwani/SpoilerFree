@@ -10,6 +10,10 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "browser_action": {
+    "default_title": "BoilerKey - In Browser",
+    "default_popup": "dropdown.html"
+  },
   "background": {
     "scripts": [
       "js/jquery/jquery.js",
@@ -23,14 +27,10 @@
     "tabs",
     "http://www.omdbapi.com/",
     "webNavigation",
-    "https://www.netflix.com"
+    "https://www.netflix.com/"
   ],
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "options_page": "src/options_custom/index.html",
-  "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
-  },
   "content_scripts": [
     {
       "matches": [
