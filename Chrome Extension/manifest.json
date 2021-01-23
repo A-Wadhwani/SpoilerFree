@@ -12,6 +12,7 @@
   "default_locale": "en",
   "background": {
     "scripts": [
+      "js/jquery/jquery.js",
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js"
@@ -28,6 +29,9 @@
     "default_title": "page action demo",
     "default_popup": "src/page_action/page_action.html"
   },
+  "permissions": [
+    "tabs"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -42,6 +46,7 @@
         "https://www.google.com/*"
       ],
       "js": [
+        "js/jquery/jquery.js",
         "src/inject/inject.js"
       ]
     }
