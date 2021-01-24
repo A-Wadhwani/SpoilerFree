@@ -3,7 +3,7 @@ loadData()
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log('messaged.');
   if (request.greeting == 'hello')
-    sendResponse({ farewell: loadSpoilerWords() })
+    sendResponse({ farewell: loadSpoilerWords()})
 })
 
 function loadData () {
