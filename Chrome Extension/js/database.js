@@ -20,7 +20,7 @@ function checkForSpoilers (youtubeURL, callback) {
   fetch(request)
     .then(r => r.text())
     .then(result => {
-      var flag = true
+      var flag = false
       var list = loadSpoilerWords()
       list.forEach(function (element) {
         if (result.toLowerCase().includes(element.toLowerCase())) {
@@ -36,11 +36,12 @@ function checkForSpoilersInSubtitles (youtubeURL, callback) {
   fetch(request)
     .then(r => r.text())
     .then(result => {
-      var flag = true
+      var flag = false
       var list = loadSpoilerWords()
       list.forEach(function (element) {
         if (result.toLowerCase().includes(element.toLowerCase())) {
           flag = element
+          callback(flag);
         }
       })
       callback(flag)
