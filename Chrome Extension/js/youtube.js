@@ -3,8 +3,14 @@ let base64encoding = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAU
 
 
 function removeSpoilers() {
+
     chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
         console.log(response.farewell);
+        let data = response.farewell;
+        
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i]);
+        }
       });
 
     //Get all 'yt-formatted-string' elements on the page
@@ -12,86 +18,91 @@ function removeSpoilers() {
     //let x = loadData();
     //console.log(x);
     let youtubeStrings = document.getElementsByTagName("yt-formatted-string");
-
     for (let i = 0; i < youtubeStrings.length; i++) {
-        //Check if they contain spoilers
+        try {
+            //Check if they contain spoilers
 
-        if (youtubeStrings[i].innerHTML.indexOf("Stranger Things") != -1) {
+            if (youtubeStrings[i].innerHTML.indexOf("Stranger Things") != -1) {
+
+                //looks for the closest div with the class "style-scope ytd-rich-grid-media"
+                let toBeBlocked = youtubeStrings[i].closest("style-scope ytd-rich-grid-media");
+                if (!(toBeBlocked === null)) {
+                    while (true) {
+                        if (toBeBlocked.id.localeCompare("dismissable") == 0) {
+                            break;
+                        }
+                    } 
+                    toBeBlocked = toBeBlocked.closest("text-wrapper style-scope ytd-video-renderer");  
+                }
+
+                if (toBeBlocked === null) {
+                    toBeBlocked = youtubeStrings[i];
+                    while(true) {
+                        if ((toBeBlocked.className.localeCompare("text-wrapper style-scope ytd-video-renderer") == 0)
+                        || (toBeBlocked.id.localeCompare("details"))) {
+                            break;
+                        }
+                        toBeBlocked = toBeBlocked.parentNode;
+                    }
+                }
+
+                toBeBlocked.setAttribute("style", "visibility: hidden");
+
+                let dismissable = toBeBlocked;
+                while (true) {
+                    if ((dismissable).id.localeCompare("dismissable") == 0) {
+                        break;
+                    }
+                    dismissable = dismissable.parentNode;
+                }
+
+                let thumbnail = dismissable.getElementsByClassName("style-scope yt-img-shadow");
+                
+                thumbnail[0].setAttribute("src", base64encoding);
+            }
+        } catch(error) {}
+    }
+    // this down below censors out videos that are recommended on the right side of a currently playing video
+    let youtubeStrings2 = document.getElementsByTagName("span");
+    for (let i = 0; i < youtubeStrings2.length; i++) {
+
+        if (youtubeStrings2[i].innerHTML.indexOf("Stranger Things") != -1) {
 
             //looks for the closest div with the class "style-scope ytd-rich-grid-media"
-            let toBeBlocked = youtubeStrings[i].closest("style-scope ytd-rich-grid-media");
+            let toBeBlocked = youtubeStrings2[i].closest("style-scope yt-img-shadow");
+            //console.log("This: " + toBeBlocked + " is what we got");
             if (!(toBeBlocked === null)) {
                 while (true) {
                     if (toBeBlocked.id.localeCompare("dismissable") == 0) {
                         break;
                     }
                 } 
-                toBeBlocked = toBeBlocked.closest("text-wrapper style-scope ytd-video-renderer");  
+                toBeBlocked = toBeBlocked.closest("style-scope yt-img-shadow");  
             }
 
             if (toBeBlocked === null) {
-                toBeBlocked = youtubeStrings[i];
+                toBeBlocked = youtubeStrings2[i];
                 while(true) {
-                    if ((toBeBlocked.className.localeCompare("text-wrapper style-scope ytd-video-renderer") == 0)
+                    if ((toBeBlocked.className.localeCompare("style-scope yt-img-shadow") == 0)
                     || (toBeBlocked.id.localeCompare("details"))) {
                         break;
                     }
                     toBeBlocked = toBeBlocked.parentNode;
                 }
             }
-
             toBeBlocked.setAttribute("style", "visibility: hidden");
-
             let dismissable = toBeBlocked;
-            while (true) {
-                if ((dismissable).id.localeCompare("dismissable") == 0) {
-                    break;
+            try {
+                while (true) {
+                    if ((dismissable).id.localeCompare("dismissable") == 0) {
+                        break;
+                    }
+                    dismissable = dismissable.parentNode;
                 }
-                dismissable = dismissable.parentNode;
-            }
+            } catch(error) {}
+            let thumbnail = dismissable.getElementsByClassName("style-scope yt-img-shadow")[0];
 
-            let thumbnail = dismissable.getElementsByClassName("style-scope yt-img-shadow");
-            
-            thumbnail[0].setAttribute("src", base64encoding);
-
-            //toBeBlocked.setAttribute("style", "display: none !important;");
-
-            /*console.log(toBeBlocked.getElementsByClassName("overlay"));
-
-            if (toBeBlocked.getElementsByClassName("overlay").length == 0) {
-
-
-                let thumbnail = toBeBlocked.getElementsByTagName("ytd-thumbnail");
-                thumbnail[0].setAttribute("style", "display: none !important;")
-                
-                var node = document.createElement("DIV");
-                node.setAttribute("class", "overlay");
-
-                toBeBlocked.appendChild(node);
-
-                var imageNode = document.createElement("IMG");
-                imageNode.setAttribute("src", "https://i.ytimg.com/vi/CV4he9sDXL8/maxresdefault.jpg");
-                imageNode.setAttribute("class", "image");
-                node.appendChild(imageNode);
-            }*/
-
-            /*let thumbnail = toBeBlocked.getElementsByClassName("style-scope yt-img-shadow");
-            console.log(thumbnail);
-            node.appendChild(imageNode);
-            toBeBlocked.appendChild(node);*/
-
-            
-
-            /*youtubeStrings[i].setAttribute("style", "visibility: hidden");
-
-            let thumbnail = toBeBlocked.getElementsByClassName("style-scope ytd-video-renderer");
-            console.log(thumbnail);
-
-            thumbnail.setAttribute("style", "visibility: hidden");*/
-
-            //let oldAttribute = toBeBlocked.getAttribute("style");
-
-            //toBeBlocked.setAttribute("style", "display: none !important;");
+            thumbnail.setAttribute("src", "https://i.ytimg.com/vi/CV4he9sDXL8/maxresdefault.jpg");
         }
     }
     setTimeout(() => {
