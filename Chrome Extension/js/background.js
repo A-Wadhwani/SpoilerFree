@@ -1,6 +1,6 @@
 /* detects when the browswer has started to load a webpage */
 
-chrome.webNavigation.onDOMCompleteLoaded.addListener(function (tab) {
+chrome.webNavigation.onDOMContentLoaded.addListener(function (tab) {
     if (tab.frameId == 0) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             
@@ -15,6 +15,8 @@ chrome.webNavigation.onDOMCompleteLoaded.addListener(function (tab) {
             else {
                 return;
             }
+
+            
 
             /*let url = tabs[0].url;
 
