@@ -16,6 +16,8 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
                 return;
             }
 
+            
+
             /*let url = tabs[0].url;
 
             //remove things from the beginning
