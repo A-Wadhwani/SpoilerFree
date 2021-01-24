@@ -5,9 +5,6 @@
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             
             //check the URL
-            if (!tabs[0]){
-                return;
-            }
 
             let url =  tabs[0].url;
 
@@ -19,6 +16,10 @@
                 return;
             }*/
 //
+            //}
+
+            
+
             /*let url = tabs[0].url;
 
             //remove things from the beginning
@@ -52,7 +53,7 @@ function runYoutubeScript() {
 }
 
 
-function removeSpoilers() {
+/*function removeSpoilers() {
 
     if (0 == 0) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
@@ -163,7 +164,7 @@ function removeSpoilers() {
             //let oldAttribute = toBeBlocked.getAttribute("style");
 
             //toBeBlocked.setAttribute("style", "display: none !important;");
-            }
+ /*           }
         }
     }
                 return;
@@ -173,7 +174,7 @@ function removeSpoilers() {
             }
         });
     }
-}
+}*/
 
 //repeats as user scrolls, every 200 ms
 

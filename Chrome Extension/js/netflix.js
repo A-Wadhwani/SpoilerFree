@@ -7,18 +7,13 @@ let finalData = {
     'Director': '',
     'Poster': ''
 };
-/*
-function newPopup(url) {
-	popupWindow = window.open(url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=false,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-}*/
 
 /* Respond to the user's clicking one of the buttons */
 chrome.notifications.onButtonClicked.addListener(function(notifId, btnIdx) {
         if (btnIdx === 0) {
-            console.log("YES");
             addShow(finalData);
         } else if (btnIdx === 1) {
-            console.log("NO");
+            lastNetflixUrl = "";
         }
 });
 
@@ -97,10 +92,9 @@ function scanTabs() {
                         };
 
                         if (isBlackListed(title) == false) {
-                            console.log("sending");
                             chrome.notifications.create('', {
-                                title: 'SpoilerFilter',
-                                message: 'Do you want to add \"' + title + '\" to SpoilerFilter?',
+                                title: 'SpoilerFree',
+                                message: 'Do you want to add \"' + title + '\" to SpoilerFree?',
                                 iconUrl: '/icon.png',
                                 type: 'basic',
                                 buttons: [{

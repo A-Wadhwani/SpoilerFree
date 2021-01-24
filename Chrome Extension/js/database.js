@@ -11,7 +11,7 @@ function loadData(){
 }
 
 function checkForSpoilers(youtubeURL, callback){
-    request = "http://35.232.212.63/?getdesc=" + youtubeURL;
+    request = "http://35.232.212.63/getdesc?url=" + youtubeURL;
     fetch(request).then(r => r.text()).then(result => {
         var flag = true;
         var list = loadSpoilerWords();
@@ -25,7 +25,7 @@ function checkForSpoilers(youtubeURL, callback){
 }
 
 function checkForSpoilersInSubtitles(youtubeURL, callback){
-    request = "http://35.232.212.63/?url=" + youtubeURL;
+    request = "http://35.232.212.63/transcribe?url=" + youtubeURL;
     fetch(request).then(r => r.text()).then(result => {
         var flag = true;
         var list = loadSpoilerWords();

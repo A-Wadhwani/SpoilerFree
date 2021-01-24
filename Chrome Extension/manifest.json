@@ -21,7 +21,7 @@
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js",
-      "js/background.js"
+      "js/youtube2.js"
     ]
   },
   "permissions": [
