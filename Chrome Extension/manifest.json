@@ -17,11 +17,11 @@
   "background": {
     "scripts": [
       "js/jquery/jquery.js",
+      "js/database.js",
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js",
-      "js/background.js",
-      "js/database.js"
+      "js/youtube2.js"
     ]
   },
   "permissions": [
@@ -33,7 +33,8 @@
     "http://35.232.212.63/",
     "webNavigation",
     "https://www.netflix.com/",
-    "https://www.youtube.com/"
+    "https://www.youtube.com/",
+    "http://www.youtube.com/"
   ],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "web_accessible_resources": ["popup.html"],
@@ -54,15 +55,6 @@
       "js": [
         "js/jquery/jquery.js",
         "src/inject/inject.js"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.youtube.com/*",
-        "https://youtube.com/*"
-      ],
-      "js": [
-        "js/youtube.js"
       ]
     },
     {
