@@ -5,19 +5,16 @@ function removeSpoilers() {
     //Get all 'yt-formatted-string' elements on the page
 
     let youtubeStrings = document.getElementsByTagName("yt-formatted-string");
-
-    for (let i = 0; i < youtubeStrings.length; i++) {
+    for (i = 0; i < youtubeStrings.length; i++) {
         //Check if they contain spoilers
-
-        if (youtubeStrings[i].innerHTML.indexOf("Stranger Things") != -1) {
-
-            console.log("Hello World!");
+        try{
+        if (youtubeStrings[i].innerHTML.toLowerCase().indexOf("stranger things") != -1) {
 
             //looks for the closest div with the class "style-scope ytd-rich-grid-media"
             let toBeBlocked = youtubeStrings[i].closest("style-scope ytd-rich-grid-media");
             console.log("This: " + toBeBlocked + " is what we got");
             if (!(toBeBlocked === null)) {
-                while (true) {
+                while (toBeBlocked != null) {
                     if (toBeBlocked.id.localeCompare("dismissable") == 0) {
                         break;
                     }
@@ -27,7 +24,7 @@ function removeSpoilers() {
 
             if (toBeBlocked === null) {
                 toBeBlocked = youtubeStrings[i];
-                while(true) {
+                while(toBeBlocked != null) {
                     if ((toBeBlocked.className.localeCompare("text-wrapper style-scope ytd-video-renderer") == 0)
                     || (toBeBlocked.id.localeCompare("details"))) {
                         break;
@@ -41,7 +38,7 @@ function removeSpoilers() {
             toBeBlocked.setAttribute("style", "visibility: hidden");
 
             let dismissable = toBeBlocked;
-            while (true) {
+            while (dismissable != null) {
                 if ((dismissable).id.localeCompare("dismissable") == 0) {
                     break;
                 }
@@ -93,10 +90,13 @@ function removeSpoilers() {
 
             //toBeBlocked.setAttribute("style", "display: none !important;");
         }
+    } catch (err){
+        console.log(err);
+    }
     }
     setTimeout(() => {
         requestAnimationFrame(removeSpoilers);    
-    }, 1000);
+    }, 500);
 }
 
 requestAnimationFrame(removeSpoilers);
