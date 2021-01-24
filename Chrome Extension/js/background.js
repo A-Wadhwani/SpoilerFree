@@ -1,24 +1,19 @@
 /* detects when the browswer has started to load a webpage */
 
 chrome.webNavigation.onDOMContentLoaded.addListener(function (tab) {
-    if (tab.frameId == 0) {
-        chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-            
-            //check the URL
+  if (tab.frameId == 0) {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+      //check the URL
+      let url = tabs[0].url
 
-            let url =  tabs[0].url;
+      if (url.indexOf('youtube.com') != -1) {
+        runYoutubeScript()
+        return
+      } else {
+        return
+      }
 
-            if (url.indexOf("youtube.com") != -1) {
-                runYoutubeScript();
-                return;
-            }
-            else {
-                return;
-            }
-
-            
-
-            /*let url = tabs[0].url;
+      /*let url = tabs[0].url;
             //remove things from the beginning
             let parsedUrl = url.replace("https://", "").replace("http://", "")
                 .replace("www.", "");
@@ -35,14 +30,13 @@ chrome.webNavigation.onDOMContentLoaded.addListener(function (tab) {
             } catch (err) {
                 throw err;
             }*/
-                
-        });
-    }
-});
+    })
+  }
+})
 
-function runYoutubeScript() {
-    chrome.tabs.executeScript({
-        file: 'js/youtube.js'
-    });
-    return true;
+function runYoutubeScript () {
+  chrome.tabs.executeScript({
+    file: 'js/youtube2.js'
+  })
+  return true
 }

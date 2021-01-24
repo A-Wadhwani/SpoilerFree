@@ -21,7 +21,7 @@
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js",
-      "js/youtube2.js"
+      "js/background.js"
     ]
   },
   "permissions": [
@@ -58,9 +58,9 @@
       ]
     },
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["https://youtube.com/*"],
       "js": [
-        "js/app.js"
+        "js/youtube2.js"
       ]
     }
   ]

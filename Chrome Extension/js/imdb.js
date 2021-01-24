@@ -36,7 +36,6 @@ function getDataFromIMDB(OMbd){
             'Director': result['Director'],
             'Poster': result['Poster']
         };
-        alert(JSON.stringify(data));
         return data;
     });
     return null;
