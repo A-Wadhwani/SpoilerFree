@@ -27,7 +27,8 @@ function checkForSpoilers (youtubeURL, callback) {
           flag = element
         }
       })
-      callback(flag)
+      if (flag==false) callback("No spoilers found in description");
+      else callback("Potential spoilers in description");
     })
 }
 
@@ -41,10 +42,10 @@ function checkForSpoilersInSubtitles (youtubeURL, callback) {
       list.forEach(function (element) {
         if (result.toLowerCase().includes(element.toLowerCase())) {
           flag = element
-          callback(flag);
         }
       })
-      callback(flag)
+      if (flag==false) callback("No spoilers found in transcription");
+      else callback("Potential spoilers in transcription");
     })
 }
 
