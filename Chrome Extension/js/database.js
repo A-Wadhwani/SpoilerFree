@@ -1,5 +1,12 @@
 
-loadData();
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.greeting == "hello")
+        sendResponse({farewell: loadData()});
+    }
+  );
+
 
 function loadData(){
     let data = JSON.parse(localStorage.getItem('showsArray'));
@@ -74,6 +81,9 @@ function addToblacklist(title){
 
 function isBlackListed(title){
     let data = JSON.parse(localStorage.getItem('blacklist'));
+    if (data == null) {
+        return false;
+    }
     data.forEach(element => {
         if (element == title){
             return true;
@@ -107,3 +117,6 @@ function removeShow(title){
     });
     localStorage.setItem('showsArray', JSON.stringify(data));
 }
+
+
+loadData();
