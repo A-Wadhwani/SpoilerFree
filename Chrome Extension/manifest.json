@@ -17,12 +17,11 @@
   "background": {
     "scripts": [
       "js/jquery/jquery.js",
+      "js/database.js",
       "js/netflix.js",
       "js/imdb.js",
       "js/spoilerfilter.js",
-      "js/background.js",
-      "js/database.js",
-      "js/youtube.js"
+      "js/background.js"
     ]
   },
   "permissions": [
