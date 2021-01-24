@@ -12,7 +12,7 @@ You can also find more detailed instructions [here](https://webkul.com/blog/how-
 
 ## Usage
  - Visit [Netflix]("https://www.netflix.com") and pick a [show to watch](https://www.netflix.com/watch/80057281). A notification should come regarding adding the show to SpoilerFree.
- ![Netflix Screenshot](https://github.com/A-Wadhwani/SpoilerFree/blob/main/Screenshots/Netflix%20Notification.png?raw=true)
+ ![Netflix Screenshot](https://github.com/A-Wadhwani/SpoilerFree/blob/main/Screenshots/Netflix%20Notification.png?raw=true "Netflix Screenshot")
  - By clicking on the extension, which may be hidden under the extension icon, you can view the shows currently added and remove shows you've finished. You can also manually add shows and movies.
  - Visit [YouTube](https://www.youtube.com). See if any videos in your current list are present. If not, try searching for something with a connection [to the shows on your list](https://www.youtube.com/results?search_query=hopper&page&utm_source=opensearch)
- ![When Avengers is on your show list](https://github.com/A-Wadhwani/SpoilerFree/blob/main/Screenshots/After%20Filter%20Thanos.png?raw=true)
+ ![When Avengers is on your show list](https://github.com/A-Wadhwani/SpoilerFree/blob/main/Screenshots/After%20Filter%20Thanos.png?raw=true "When Avengers is on your show list")
