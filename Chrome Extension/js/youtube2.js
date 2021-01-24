@@ -20,11 +20,9 @@ function removeSpoilers () {
 }
 
 function handleRemoval (spoilerWords) {
-  console.log('hi')
   let youtubeStrings = document.getElementsByTagName('yt-formatted-string')
   for (var i = 0; i < youtubeStrings.length; i++) {
     for (var j = 0; j < spoilerWords.length; j++) {
-      console.log('loop')
       try {
         if (
           youtubeStrings[i].innerHTML.toLowerCase().indexOf(spoilerWords[j].toLowerCase()) !=
@@ -35,7 +33,6 @@ function handleRemoval (spoilerWords) {
           let toBeBlocked = youtubeStrings[i].closest(
             'style-scope ytd-rich-grid-media'
           )
-          console.log('here1')
           //console.log("This: " + toBeBlocked +s " is what we got");
           if (!(toBeBlocked === null)) {
             while (toBeBlocked != null) {
@@ -47,7 +44,6 @@ function handleRemoval (spoilerWords) {
               'text-wrapper style-scope ytd-video-renderer'
             )
           }
-          console.log('here2')
           if (toBeBlocked === null) {
             toBeBlocked = youtubeStrings[i]
             while (toBeBlocked != null) {
@@ -62,7 +58,6 @@ function handleRemoval (spoilerWords) {
               toBeBlocked = toBeBlocked.parentNode
             }
           }
-          console.log('here3')
           toBeBlocked.setAttribute('style', 'visibility: hidden')
           let dismissable = toBeBlocked
           while (dismissable != null) {
@@ -71,13 +66,11 @@ function handleRemoval (spoilerWords) {
             }
             dismissable = dismissable.parentNode
           }
-          console.log('here4')
           let thumbnail = dismissable.getElementsByClassName(
             'style-scope yt-img-shadow'
           )[0]
           console.log(thumbnail);
           thumbnail.setAttribute('src', base64encoding)
-          console.log('here5')
         }
       } catch (err) {
         console.log(err)
