@@ -1,6 +1,6 @@
 /* detects when the browswer has started to load a webpage */
 
-chrome.webNavigation.onCommitted.addListener(function (tab) {
+chrome.webNavigation.onDOMContentLoaded.addListener(function (tab) {
     if (tab.frameId == 0) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             
@@ -19,15 +19,12 @@ chrome.webNavigation.onCommitted.addListener(function (tab) {
             
 
             /*let url = tabs[0].url;
-
             //remove things from the beginning
             let parsedUrl = url.replace("https://", "").replace("http://", "")
                 .replace("www.", "");
-
             //remove things after / 
             let domain = parsedUrl.slice(0, parsedUrl.indexOf('/') == -1 ? parsedUrl.length : parsedUrl.indexOf('/'))
                 .slice(0, parsedUrl.indexOf('?') == -1 ? parsedUrl.length : parsedUrl.indexOf('?'));
-
             try {
                 if (domain.length < 1 || domain === null || domain === undefined) {
                     return;
